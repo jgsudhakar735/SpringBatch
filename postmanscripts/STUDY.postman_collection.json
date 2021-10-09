@@ -11,9 +11,9 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{serverurl}}springbatch/api/student/processbatch",
+					"raw": "http://localhost:9898/springbatch/api/student/processbatch",
 					"host": [
-						"{{serverurl}}springbatch"
+						"http://localhost:9898/springbatch"
 					],
 					"path": [
 						"api",
@@ -36,9 +36,9 @@
 					}
 				],
 				"url": {
-					"raw": "{{serverurl}}springbatch/api/student/retrieve",
+					"raw": "http://localhost:9898/springbatch/api/student/retrieve",
 					"host": [
-						"{{serverurl}}springbatch"
+						"http://localhost:9898/springbatch"
 					],
 					"path": [
 						"api",
