@@ -17,7 +17,10 @@ import com.jgsudhakar.spring.batch.dto.StudentResponseDto;
 import com.jgsudhakar.spring.batch.itemprocessor.StudentItemProcessor;
 import com.jgsudhakar.spring.batch.itemreader.StudentItemReader;
 import com.jgsudhakar.spring.batch.itemwriter.StudentItemWriter;
+import com.jgsudhakar.spring.batch.listener.JobProcessListener;
+import com.jgsudhakar.spring.batch.listener.JobReaderListener;
 import com.jgsudhakar.spring.batch.listener.JobStatusListerner;
+import com.jgsudhakar.spring.batch.listener.JobWriterListener;
 import com.jgsudhakar.spring.batch.service.StudentService;
 
 /**
@@ -46,7 +49,8 @@ public class SpringBatchJobConfig {
 		return jobBuilderFactory
 				.get("processJob")
 				.incrementer(new RunIdIncrementer())
-				.listener(listener())
+				.listener(listener()) // job status listener
+				.listener(jobBuilderFactory)
 				.flow(orderStep1())
 				.end()
 				.build();
@@ -55,10 +59,13 @@ public class SpringBatchJobConfig {
 	@Bean
 	public Step orderStep1() {
 		return stepBuilderFactory.get("orderStep1") // Step name
-				.<StudentResponseDto, StudentResponseDto>chunk(1) // Iterm Processor Input and output Classes
-				.reader(new StudentItemReader()) // Item Reader class
+				.<StudentResponseDto, StudentResponseDto>chunk(2) // Iterm Processor Input and output Classes
+				.reader(new StudentItemReader(service)) // Item Reader class
 				.processor(new StudentItemProcessor()) // Item Processor class
 				.writer(new StudentItemWriter(this.service)) // Item Writer class
+				.listener(readListener()) // read listener
+				.listener(processListener()) // process listener
+				.listener(writeListener()) // write listener
 				.build();
 	}
 
@@ -70,6 +77,33 @@ public class SpringBatchJobConfig {
 	@Bean
 	public JobExecutionListener listener() {
 		return new JobStatusListerner();
+	}
+	/**
+	 * This is to Listen to the job status
+	 * 
+	 * @return
+	 */
+	@Bean
+	public JobReaderListener readListener() {
+		return new JobReaderListener();
+	}
+	/**
+	 * This is to Listen to the job processing 
+	 * 
+	 * @return
+	 */
+	@Bean
+	public JobProcessListener processListener() {
+		return new JobProcessListener();
+	}
+	/**
+	 * This is to Listen to the job writing
+	 * 
+	 * @return
+	 */
+	@Bean
+	public JobWriterListener writeListener() {
+		return new JobWriterListener();
 	}
 
 }

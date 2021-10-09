@@ -6,6 +6,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.jgsudhakar.spring.batch.dto.StudentRequestDto;
@@ -13,6 +14,7 @@ import com.jgsudhakar.spring.batch.dto.StudentResponseDto;
 import com.jgsudhakar.spring.batch.entity.StudentEntity;
 import com.jgsudhakar.spring.batch.repo.StudentRepository;
 import com.jgsudhakar.spring.batch.service.StudentService;
+
 /**
  * @Author : Sudhakar Tangellapalli
  * @File : com.jgsudhakar.spring.batch.service.impl.StudentServiceImpl
@@ -39,5 +41,13 @@ public class StudentServiceImpl implements StudentService {
 		entity.setRollNo(dto.getRollNo());
 		entity.setStandard(dto.getStandard());
 		studentRepository.save(entity);
+	}
+
+	@Override
+	public List<StudentResponseDto> retrieveStudents(Pageable pageable) {
+		return Optional.ofNullable(studentRepository.findAll(pageable)).get().getContent().stream()
+				.map(student -> new StudentResponseDto(student.getId(), student.getName(), student.getRollNo(),
+						student.getStandard()))
+				.collect(Collectors.toList());
 	}
 }

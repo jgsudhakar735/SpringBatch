@@ -3,6 +3,8 @@
  */
 package com.jgsudhakar.spring.batch.listener;
 
+import java.util.List;
+
 import org.springframework.batch.core.BatchStatus;
 import org.springframework.batch.core.JobExecution;
 import org.springframework.batch.core.listener.JobExecutionListenerSupport;
@@ -22,7 +24,13 @@ public class JobStatusListerner extends JobExecutionListenerSupport {
 		log.info(":: Job Execution done, and the staus is ::");
 		if (jobExecution.getStatus() == BatchStatus.COMPLETED) {
 			System.out.println("BATCH JOB COMPLETED SUCCESSFULLY");
-		}
+		}else if(jobExecution.getStatus() == BatchStatus.FAILED){
+            System.out.println(":: Job failed with following exceptions ");
+            List<Throwable> exceptionList = jobExecution.getAllFailureExceptions();
+            for(Throwable th : exceptionList){
+                System.err.println("exception :" +th.getLocalizedMessage());
+            }
+        }
 	}
 
 	@Override

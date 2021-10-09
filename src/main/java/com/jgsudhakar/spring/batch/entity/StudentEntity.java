@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -29,8 +28,8 @@ public class StudentEntity implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO, generator = "STU_SEQ")
-	@SequenceGenerator(name = "STU_SEQ", sequenceName = "STU_SEQ", allocationSize = 1, initialValue = 1)
+	@GeneratedValue(strategy = GenerationType.IDENTITY) //, generator = "STU_SEQ")
+//	@SequenceGenerator(name = "STU_SEQ", sequenceName = "STU_SEQ", allocationSize = 1, initialValue = 1)
 	@Column(name = "ID")
 	private Long id;
 	

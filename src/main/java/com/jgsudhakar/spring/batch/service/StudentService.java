@@ -2,6 +2,8 @@ package com.jgsudhakar.spring.batch.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.Pageable;
+
 import com.jgsudhakar.spring.batch.dto.StudentRequestDto;
 import com.jgsudhakar.spring.batch.dto.StudentResponseDto;
 
@@ -15,5 +17,7 @@ public interface StudentService {
 	public List<StudentResponseDto> fetchStuList();
 	
 	public void save(StudentRequestDto dto);
+	
+	public List<StudentResponseDto> retrieveStudents(Pageable pageable);
 	
 }
