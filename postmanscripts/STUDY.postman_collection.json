@@ -1,0 +1,60 @@
+{
+	"info": {
+		"_postman_id": "14a944a1-97e6-485c-826a-3abc0fd1ae66",
+		"name": "STUDY",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "SB_JOBRUN",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{serverurl}}springbatch/api/student/processbatch",
+					"host": [
+						"{{serverurl}}springbatch"
+					],
+					"path": [
+						"api",
+						"student",
+						"processbatch"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SB_STU_LIST",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJpVTNKcFBWT0pWNFRnazVYMTU2RkVlU2xWOHBiWVRwWjdSNFBJVkJ0bGFRIn0.eyJleHAiOjE2MzIzNjMzMTAsImlhdCI6MTYzMjM2MzAxMCwianRpIjoiZDBkNzc4MWYtMWIyYi00MGQ3LWJlMGQtYWZmYzY3Y2NmOTM1IiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo5OTk5L2F1dGgvcmVhbG1zL0RlbW8iLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiODQ5OTVhOTQtNWVlZi00ZTNiLTg0NjAtNGFlZjRjOGViN2IwIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiRGVtby1BcHAiLCJzZXNzaW9uX3N0YXRlIjoiMDIzZDQ3MWYtMjM4YS00ODRhLWE5ZDktMTJmMDY5YjdhMGVmIiwiYWNyIjoiMSIsInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJvZmZsaW5lX2FjY2VzcyIsImFwcC1hZG1pbiIsImRlZmF1bHQtcm9sZXMtZGVtbyIsInVtYV9hdXRob3JpemF0aW9uIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiRGVtby1BcHAiOnsicm9sZXMiOlsiQWRtaW4iLCJ1c2VycyJdfSwiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJlbWFpbCBwcm9maWxlIiwic2lkIjoiMDIzZDQ3MWYtMjM4YS00ODRhLWE5ZDktMTJmMDY5YjdhMGVmIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJzdWRoYWthciJ9.SA3Z2zJ5tcC9Ve-FD0NmPpNwNSov_uE1q6oGuuzzbpu1afWVQeWg_24JXmiF2rvGwVHjSXrhEVxBql8rJHxArkSbh5ruuo3sMXMzAftMwJtZv-lLuNck3Xq_5ezluctKGj9xoBDvv1TXEutPK3lzHe7lNw7q-daCs7nw8o69fy1WQ7J5MMJkc38dPwSv-fIfHlFsuExYdlg5jjpsDKoU-I6yUTmVFmLYr66G8KDmvHjbTiVzFS3db9qw_0LpxZRR6NTZ4O_r3Jszv0RrQrXAG5dmWMaladISAHlc0oEIqiDJZ-8jv-XnOmn8Lb8tkkDMt0_2LScWgKu55Bpjxu6yzA",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{serverurl}}springbatch/api/student/retrieve",
+					"host": [
+						"{{serverurl}}springbatch"
+					],
+					"path": [
+						"api",
+						"student",
+						"retrieve"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
