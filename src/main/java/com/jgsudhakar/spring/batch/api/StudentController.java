@@ -11,6 +11,7 @@ import org.springframework.batch.core.repository.JobExecutionAlreadyRunningExcep
 import org.springframework.batch.core.repository.JobInstanceAlreadyCompleteException;
 import org.springframework.batch.core.repository.JobRestartException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,6 +36,10 @@ public class StudentController {
 	@Autowired
 	private Job processJob;
 
+	@Qualifier("writeToFile")
+	@Autowired
+	private Job writeToFile;
+
 	@GetMapping("/{name}")
 	public String sayHi(@PathVariable(name = "name", required = true) String name) {
 		return "Welcome " + name + ". Hope you are doing Good :)";
@@ -53,6 +58,15 @@ public class StudentController {
         jobLauncher.run(processJob, jobParameters);
         
         return ":) Job Started Successfully ! :)";
+	}
+	
+	@GetMapping("/processbatchtofile")
+	public String processbatchtofile() throws JobExecutionAlreadyRunningException, JobRestartException, JobInstanceAlreadyCompleteException, JobParametersInvalidException {
+		JobParameters jobParameters = new JobParametersBuilder().addLong("dateTime", System.currentTimeMillis())
+				.toJobParameters();
+		jobLauncher.run(writeToFile, jobParameters);
+		
+		return ":) Job Started Successfully ! :)";
 	}
 
 }

@@ -47,3 +47,6 @@ info:
   name: ${spring.application.name}
   description: Spring Batch Demo Application
   version: 1.0.0
+
+jgsudhakar:
+  exportFileName: D:/outputdata.csv 
